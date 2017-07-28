@@ -1,7 +1,7 @@
 ## Ant Colony Optimization
 ### with node.js
 
-ACO is one of the most konwn Optimization and TSP Algorithm.
+ACO is one of the most known Optimization and TSP Algorithms.
 
 So in my masters degree i had to implement it for Sorting my multi-dimentional Graphs.
 
@@ -76,40 +76,6 @@ module.exports = function(dists, dimensions) {
             } catch (err) {
                 console.log(err.message);
             }
-        },
-        glouton: function() {
-            try {
-                chaine += "Number cities in problem = " + __.numCities;
-                var chemain = new Array();
-                chemain[__.numCities + 1] = __.maxDistance * __.numCities * 10;
-                var temporaire = new Array();
-
-                for (var s = 0; s < __.numCities; s++) {
-                    temporaire = [];
-                    temporaire[0] = s;
-                    temporaire[__.numCities + 1] = 0;
-                    for (var i = 0; i < __.numCities - 1; i++) {
-                        temporaire[i + 1] = NextEdge(dists[temporaire[i]], temporaire);
-                        temporaire[__.numCities + 1] += dists[temporaire[i]][temporaire[i + 1]];
-                    }
-
-                    if (temporaire[__.numCities + 1] < chemain[__.numCities + 1]) {
-                        for (var t = 0; t <= __.numCities + 1; t++) {
-                            chemain[t] = temporaire[t];
-                        }
-                    }
-                }
-                chaine += "\nBestTrail " + chemain;
-                console.log(chaine);
-                return chemain.slice(0, __.numCities);
-            } catch (err) {
-                console.log(err.message);
-            }
-        },
-        branchandbound: function() {
-            var TSP_BnB = require('./Branch&Bound');
-            var result = new TSP_BnB(dimensions, dists, __.maxDistance * __.numCities * 10);
-            return result;
         }
 
     };
